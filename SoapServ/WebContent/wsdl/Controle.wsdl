@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://ws" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://ws" xmlns:intf="http://ws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://ws" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getClients">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="pass" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getClientsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getClientsReturn" type="impl:Client"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Client">
+    <sequence>
+     <element name="addresseC" nillable="true" type="xsd:string"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="idC" type="xsd:int"/>
+     <element name="nomC" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="prenomC" nillable="true" type="xsd:string"/>
+     <element name="teleC" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="estAdmin">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="pass" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="estAdminResponse">
+    <complexType>
+     <sequence>
+      <element name="estAdminReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ajouter">
+    <complexType>
+     <sequence>
+      <element name="c" type="impl:Client"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ajouterResponse">
+    <complexType/>
+   </element>
+   <element name="getCommandes">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="pass" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCommandesResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getCommandesReturn" type="impl:Commande"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Commande">
+    <sequence>
+     <element name="addresseC" nillable="true" type="xsd:string"/>
+     <element name="date" nillable="true" type="xsd:string"/>
+     <element name="emailC" nillable="true" type="xsd:string"/>
+     <element name="idBk" type="xsd:int"/>
+     <element name="idC" type="xsd:int"/>
+     <element name="nomBk" nillable="true" type="xsd:string"/>
+     <element name="nomC" nillable="true" type="xsd:string"/>
+     <element name="prenomC" nillable="true" type="xsd:string"/>
+     <element name="qnt" type="xsd:int"/>
+     <element name="teleC" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="getCategorie">
+    <complexType/>
+   </element>
+   <element name="getCategorieResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getCategorieReturn" type="impl:Biblio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Biblio">
+    <sequence>
+     <element name="idb" type="xsd:int"/>
+     <element name="nomB" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="addBook">
+    <complexType>
+     <sequence>
+      <element name="b" type="impl:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Book">
+    <sequence>
+     <element name="auteurBk" nillable="true" type="xsd:string"/>
+     <element name="date_edition" nillable="true" type="xsd:string"/>
+     <element name="idB" type="xsd:int"/>
+     <element name="idBk" type="xsd:int"/>
+     <element name="nomB" nillable="true" type="xsd:string"/>
+     <element name="nomBk" nillable="true" type="xsd:string"/>
+     <element name="path" nillable="true" type="xsd:string"/>
+     <element name="prixBx" nillable="true" type="xsd:double"/>
+     <element name="qnt" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <element name="addBookResponse">
+    <complexType/>
+   </element>
+   <element name="logIn">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="pass" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="logInResponse">
+    <complexType>
+     <sequence>
+      <element name="logInReturn" type="impl:Client"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getBook">
+    <complexType/>
+   </element>
+   <element name="getBookResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getBookReturn" type="impl:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getBok">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getBokResponse">
+    <complexType>
+     <sequence>
+      <element name="getBokReturn" type="impl:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addArticle">
+    <complexType>
+     <sequence>
+      <element name="idc" type="xsd:int"/>
+      <element name="idb" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addArticleResponse">
+    <complexType/>
+   </element>
+   <element name="getBookB">
+    <complexType>
+     <sequence>
+      <element name="cat" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getBookBResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getBookBReturn" type="impl:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCommande">
+    <complexType>
+     <sequence>
+      <element name="c" type="impl:Commande"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCommandeResponse">
+    <complexType/>
+   </element>
+   <element name="addBiblio">
+    <complexType>
+     <sequence>
+      <element name="bb" type="impl:Biblio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addBiblioResponse">
+    <complexType/>
+   </element>
+   <element name="removeArticle">
+    <complexType>
+     <sequence>
+      <element name="idc" type="xsd:int"/>
+      <element name="idb" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeArticleResponse">
+    <complexType/>
+   </element>
+   <element name="sousArticle">
+    <complexType>
+     <sequence>
+      <element name="idc" type="xsd:int"/>
+      <element name="idb" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sousArticleResponse">
+    <complexType/>
+   </element>
+   <element name="vider">
+    <complexType>
+     <sequence>
+      <element name="idc" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="viderResponse">
+    <complexType/>
+   </element>
+   <element name="getPanier">
+    <complexType>
+     <sequence>
+      <element name="idc" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPanierResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getPanierReturn" type="impl:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getBookResponse">
+
+      <wsdl:part element="impl:getBookResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeArticleResponse">
+
+      <wsdl:part element="impl:removeArticleResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCommandeRequest">
+
+      <wsdl:part element="impl:addCommande" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBookResponse">
+
+      <wsdl:part element="impl:addBookResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getClientsRequest">
+
+      <wsdl:part element="impl:getClients" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBookBRequest">
+
+      <wsdl:part element="impl:getBookB" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeArticleRequest">
+
+      <wsdl:part element="impl:removeArticle" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="logInRequest">
+
+      <wsdl:part element="impl:logIn" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBiblioRequest">
+
+      <wsdl:part element="impl:addBiblio" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPanierRequest">
+
+      <wsdl:part element="impl:getPanier" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="estAdminResponse">
+
+      <wsdl:part element="impl:estAdminResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBookRequest">
+
+      <wsdl:part element="impl:addBook" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addArticleResponse">
+
+      <wsdl:part element="impl:addArticleResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCommandesResponse">
+
+      <wsdl:part element="impl:getCommandesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBookRequest">
+
+      <wsdl:part element="impl:getBook" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCategorieResponse">
+
+      <wsdl:part element="impl:getCategorieResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="viderResponse">
+
+      <wsdl:part element="impl:viderResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBookBResponse">
+
+      <wsdl:part element="impl:getBookBResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="estAdminRequest">
+
+      <wsdl:part element="impl:estAdmin" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBokRequest">
+
+      <wsdl:part element="impl:getBok" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBiblioResponse">
+
+      <wsdl:part element="impl:addBiblioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ajouterResponse">
+
+      <wsdl:part element="impl:ajouterResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getClientsResponse">
+
+      <wsdl:part element="impl:getClientsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBokResponse">
+
+      <wsdl:part element="impl:getBokResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="logInResponse">
+
+      <wsdl:part element="impl:logInResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCategorieRequest">
+
+      <wsdl:part element="impl:getCategorie" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ajouterRequest">
+
+      <wsdl:part element="impl:ajouter" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sousArticleRequest">
+
+      <wsdl:part element="impl:sousArticle" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCommandeResponse">
+
+      <wsdl:part element="impl:addCommandeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sousArticleResponse">
+
+      <wsdl:part element="impl:sousArticleResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCommandesRequest">
+
+      <wsdl:part element="impl:getCommandes" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addArticleRequest">
+
+      <wsdl:part element="impl:addArticle" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="viderRequest">
+
+      <wsdl:part element="impl:vider" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPanierResponse">
+
+      <wsdl:part element="impl:getPanierResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Controle">
+
+      <wsdl:operation name="getClients">
+
+         <wsdl:input message="impl:getClientsRequest" name="getClientsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getClientsResponse" name="getClientsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="estAdmin">
+
+         <wsdl:input message="impl:estAdminRequest" name="estAdminRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:estAdminResponse" name="estAdminResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ajouter">
+
+         <wsdl:input message="impl:ajouterRequest" name="ajouterRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:ajouterResponse" name="ajouterResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCommandes">
+
+         <wsdl:input message="impl:getCommandesRequest" name="getCommandesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCommandesResponse" name="getCommandesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCategorie">
+
+         <wsdl:input message="impl:getCategorieRequest" name="getCategorieRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCategorieResponse" name="getCategorieResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addBook">
+
+         <wsdl:input message="impl:addBookRequest" name="addBookRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addBookResponse" name="addBookResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logIn">
+
+         <wsdl:input message="impl:logInRequest" name="logInRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:logInResponse" name="logInResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBook">
+
+         <wsdl:input message="impl:getBookRequest" name="getBookRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getBookResponse" name="getBookResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBok">
+
+         <wsdl:input message="impl:getBokRequest" name="getBokRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getBokResponse" name="getBokResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addArticle">
+
+         <wsdl:input message="impl:addArticleRequest" name="addArticleRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addArticleResponse" name="addArticleResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBookB">
+
+         <wsdl:input message="impl:getBookBRequest" name="getBookBRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getBookBResponse" name="getBookBResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCommande">
+
+         <wsdl:input message="impl:addCommandeRequest" name="addCommandeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addCommandeResponse" name="addCommandeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addBiblio">
+
+         <wsdl:input message="impl:addBiblioRequest" name="addBiblioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addBiblioResponse" name="addBiblioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeArticle">
+
+         <wsdl:input message="impl:removeArticleRequest" name="removeArticleRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:removeArticleResponse" name="removeArticleResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sousArticle">
+
+         <wsdl:input message="impl:sousArticleRequest" name="sousArticleRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sousArticleResponse" name="sousArticleResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="vider">
+
+         <wsdl:input message="impl:viderRequest" name="viderRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:viderResponse" name="viderResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPanier">
+
+         <wsdl:input message="impl:getPanierRequest" name="getPanierRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPanierResponse" name="getPanierResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ControleSoapBinding" type="impl:Controle">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getClients">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getClientsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getClientsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="estAdmin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="estAdminRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="estAdminResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ajouter">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ajouterRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ajouterResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCommandes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCommandesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCommandesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCategorie">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCategorieRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCategorieResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addBook">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addBookRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addBookResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logIn">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="logInRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="logInResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBook">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getBookRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getBookResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBok">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getBokRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getBokResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addArticle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addArticleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addArticleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBookB">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getBookBRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getBookBResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCommande">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addCommandeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addCommandeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addBiblio">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addBiblioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addBiblioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeArticle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeArticleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeArticleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sousArticle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sousArticleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sousArticleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="vider">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="viderRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="viderResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPanier">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPanierRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPanierResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ControleService">
+
+      <wsdl:port binding="impl:ControleSoapBinding" name="Controle">
+
+         <wsdlsoap:address location="http://localhost:8080/SOAP_Serv/services/Controle"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

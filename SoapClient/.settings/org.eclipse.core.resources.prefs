@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/ws/Biblio.java=UTF-8
+encoding//src/ws/Book.java=UTF-8
+encoding//src/ws/Client.java=UTF-8
+encoding//src/ws/Commande.java=UTF-8
+encoding//src/ws/Controle.java=UTF-8
+encoding//src/ws/ControleService.java=UTF-8
+encoding//src/ws/ControleServiceLocator.java=UTF-8
+encoding//src/ws/ControleSoapBindingStub.java=UTF-8

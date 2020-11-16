@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ControleService WSDL service -->
+
+  <service name="Controle" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://ws"/>
+      <parameter name="wsdlServiceElement" value="ControleService"/>
+      <parameter name="schemaQualified" value="http://ws"/>
+      <parameter name="wsdlServicePort" value="Controle"/>
+      <parameter name="className" value="ws.Controle"/>
+      <parameter name="wsdlPortType" value="Controle"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://ws" xmlns:retNS="http://ws" xmlns:rtns="http://ws" name="getClients" qname="operNS:getClients" returnQName="retNS:getClientsReturn" returnType="rtns:Client" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pass" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" xmlns:retNS="http://ws" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="estAdmin" qname="operNS:estAdmin" returnQName="retNS:estAdminReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pass" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" name="ajouter" qname="operNS:ajouter" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://ws" qname="pns:c" type="tns:Client"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" xmlns:retNS="http://ws" xmlns:rtns="http://ws" name="getCommandes" qname="operNS:getCommandes" returnQName="retNS:getCommandesReturn" returnType="rtns:Commande" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pass" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" xmlns:retNS="http://ws" xmlns:rtns="http://ws" name="getCategorie" qname="operNS:getCategorie" returnQName="retNS:getCategorieReturn" returnType="rtns:Biblio" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://ws" name="addBook" qname="operNS:addBook" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://ws" qname="pns:b" type="tns:Book"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" xmlns:retNS="http://ws" xmlns:rtns="http://ws" name="logIn" qname="operNS:logIn" returnQName="retNS:logInReturn" returnType="rtns:Client" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pass" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" xmlns:retNS="http://ws" xmlns:rtns="http://ws" name="getBook" qname="operNS:getBook" returnQName="retNS:getBookReturn" returnType="rtns:Book" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://ws" xmlns:retNS="http://ws" xmlns:rtns="http://ws" name="getBok" qname="operNS:getBok" returnQName="retNS:getBokReturn" returnType="rtns:Book" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" name="addArticle" qname="operNS:addArticle" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idc" type="tns:int"/>
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idb" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" xmlns:retNS="http://ws" xmlns:rtns="http://ws" name="getBookB" qname="operNS:getBookB" returnQName="retNS:getBookBReturn" returnType="rtns:Book" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cat" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" name="addCommande" qname="operNS:addCommande" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://ws" qname="pns:c" type="tns:Commande"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" name="addBiblio" qname="operNS:addBiblio" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://ws" qname="pns:bb" type="tns:Biblio"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" name="removeArticle" qname="operNS:removeArticle" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idc" type="tns:int"/>
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idb" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" name="sousArticle" qname="operNS:sousArticle" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idc" type="tns:int"/>
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idb" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" name="vider" qname="operNS:vider" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idc" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://ws" xmlns:retNS="http://ws" xmlns:rtns="http://ws" name="getPanier" qname="operNS:getPanier" returnQName="retNS:getPanierReturn" returnType="rtns:Book" soapAction="">
+        <parameter xmlns:pns="http://ws" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idc" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="getBok getBook ajouter getCategorie addArticle removeArticle getClients addBook logIn vider sousArticle getPanier addBiblio estAdmin getBookB addCommande getCommandes"/>
+
+      <typeMapping xmlns:ns="http://ws" qname="ns:Commande" type="java:ws.Commande" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://ws" qname="ns:Biblio" type="java:ws.Biblio" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://ws" qname="ns:Book" type="java:ws.Book" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://ws" qname="ns:Client" type="java:ws.Client" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
